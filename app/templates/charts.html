@@ -3,9 +3,9 @@
 <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="#">PDB08</a>
         </li>
-        <li class="breadcrumb-item active">Charts</li>
+        <li class="breadcrumb-item active">Predict</li>
       </ol>
       <div class="row">
         <div class="col-lg-8">
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dropoff">No. of Passenger</label>
+                    <label for="passenger">No. of Passenger</label>
                     <select name="passenger" class="form-control">
                       <option value="">Select number of passenger</option>
                       <option value="1">1</option>
@@ -47,6 +47,21 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="tip">Tip</label>
+                    <input type="tip" name="timestamp" class="form-control"  placeholder="Fill the dollar amount of tip you are willing to give" ></input>
+                    <p class="help-block text-danger"></p>
+                </div> 
+
+                <div class="form-group">
+                    <label for="toll">Toll</label>
+                    <select name="toll" class="form-control">
+                      <option value="">Does your route include toll</option>
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
+                    </select>
+                </div>
+                
                 <div class="form-group">
                     <label for="timestamp">Time</label>
                     <input type="time" name="timestamp" class="form-control"  placeholder="Waktu perjalanan akan dilakukan" required="required" data-validation-required-message="Pick the time"></input>

@@ -13,17 +13,18 @@ import socket
 
 from app import app
 
-@app.route("/", methods=["GET"])
+@app.route('/', methods=["GET"])
+@app.route('/index')
 def index():
 	conf = SparkConf().setAppName("TaxiWeb")
-	sc = SparkContext(conf=conf)
+	# sc = SparkContext(conf=conf)
 	#model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
 
-	return render_template("index.html")
+	return render_template('index.html')
 
-@app.route("/charts")
+@app.route('/predict')
 def chart():
-	return render_template("charts.html")
+	return render_template('charts.html')
 	
 @app.errorhandler(404)
 def not_found(e):	
