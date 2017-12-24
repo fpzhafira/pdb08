@@ -1,9 +1,10 @@
 from pyspark.mllib.tree import DecisionTree, DecisionTreeModel
 from pyspark import SparkConf, SparkContext
-from flask import request
+from flask import request, redirect
 from flask import jsonify
 from flask import Response
 from flask import render_template
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 
 
 
@@ -13,7 +14,7 @@ import socket
 
 from app import app
 
-@app.route('/', methods=["GET"])
+@app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
 	conf = SparkConf().setAppName("TaxiWeb")
@@ -25,6 +26,27 @@ def index():
 @app.route('/predict')
 def chart():
 	return render_template('charts.html')
+
+@app.route('/predict-result', methods = ['POST'])
+def result():
+	pickupLoc = request.form['pickup']
+	dropoffLoc = request.form['dropoff']
+	passenger = request.form['passenger']
+	tip = request.form['tip']
+	toll = request.form['toll']
+	timestamp = request.form['timestamp']
+	
+	pickupLoc = {'pickupLoc' : pickupLoc}
+	dropoffLoc = {'dropoffLoc' : dropoffLoc}
+	passenger = {'passenger' : passenger}
+	tip = {'tip' : tip}
+	toll = {'toll' : toll}
+	timestamp = {'timestamp' : timestamp}
+
+
+	# print("The dropoff location is " + dropoffLoc + ".")
+	return render_template('prediction-result.html', pickupLoc=pickupLoc, dropoffLoc=dropoffLoc, passenger=passenger,
+		 tip=tip, toll=toll, timestamp=timestamp)
 	
 @app.errorhandler(404)
 def not_found(e):	

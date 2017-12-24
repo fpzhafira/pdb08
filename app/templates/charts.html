@@ -14,11 +14,11 @@
             <div class="card-header">
               <i class="fa fa-bar-chart"></i> Payment Type Prediction </div>
             <div class="card-body">
-              <form role="form" action="/a9/pimpinan-fakultas/pengajuan-dana-pimpinan-fakultas/submit" method="POST" enctype="multipart/form-data">
+              <form role="form" action="/predict-result" method="POST" enctype="multipart/form-data">
                   
                 <div class="form-group">
                     <label for="pickup">Pickup Location</label>
-                    <select name="location" class="form-control">
+                    <select name="pickup" class="form-control">
                       <option value="">Select pickup location</option>
                       <option value="Harlem">Harlem</option>
                       <option value="Hudson Yards">Hudson Yards</option>
@@ -28,7 +28,7 @@
                 
                 <div class="form-group">
                     <label for="dropoff">Dropoff Location</label>
-                    <select name="location" class="form-control">
+                    <select name="dropoff" class="form-control">
                       <option value="">Select dropoff location</option>
                       <option value="Harlem">Harlem</option>
                       <option value="Hudson Yards">Hudson Yards</option>
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <label for="tip">Tip</label>
-                    <input type="tip" name="timestamp" class="form-control"  placeholder="Fill the dollar amount of tip you are willing to give" ></input>
+                    <input type="tip" name="tip" class="form-control"  placeholder="Fill the dollar amount of tip you are willing to give" ></input>
                     <p class="help-block text-danger"></p>
                 </div> 
 
@@ -70,9 +70,7 @@
                 
                 <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-danger">Reset</button>
-          
-          
-        </form>
+              </form>
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
