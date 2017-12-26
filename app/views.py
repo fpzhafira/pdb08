@@ -20,6 +20,12 @@ places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little
 	,"Hamilton Heights", "Harlem", "Hudson Heights", "Inwood", "Le Petit Senegal", "Manhattanville", "Marble Hill", 
 	"Marcus Garvey Park", "Morningside Heights", "Sugar Hill", "Sylvan", "Washington Heights", "Lenox Hill", "Turtle Bay"]
 
+
+longitude = ["40.7465004", "40.7637581", "40.7542652", "40.7738280", "40.737103"
+	, "40.796989", "40.747027", "40.793961", "40.816212", "40.787011", "40.810300", "40.795740"
+	,"40.825960", "40.811550", "40.853497", "40.867714", "40.802343", "41.030430", "40.876117",	"40.804430", "40.808956", 
+	"40.827930", "43.196458", "40.841708", "40.766232", "40.754037"]
+
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
@@ -40,7 +46,7 @@ def index2():
 
 @app.route('/predict')
 def chart():
-	
+
 	return render_template('charts.html', places=places)
 
 @app.route('/predict-result', methods = ['POST'])
@@ -58,6 +64,7 @@ def result():
 		if places[x] == pickupLoc:
 			longitude = x
 			print longitude
+
 	
 	pickupLoc = {'pickupLoc' : pickupLoc}
 	dropoffLoc = {'dropoffLoc' : dropoffLoc}
