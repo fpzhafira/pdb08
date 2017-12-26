@@ -61,9 +61,26 @@ def result():
 	pickupLoc = request.form['pickup']
 	dropoffLoc = request.form['dropoff']
 	passenger = request.form['passenger']
-	tip = request.form['tip']
+	tip = float(request.form['tip'])
 	toll = request.form['toll']
 	timestamp = request.form['timestamp']
+
+	#hitung toll amt
+	tollAmt = None
+	if toll == 'yes':
+		tollAmt = float(5)
+	else:
+		tollAmt = float(0)
+
+	#hitung extra fare
+	(h, m) = timestamp.split(':')
+	extraFare = 0
+	h = int(h)
+	if (6 <= h <= 8) or (16 <= h <= 18) or (0 <= h <= 4):
+		extraFare = format(1, '.2f')
+
+	
+
 
 	#hitung distance
 	longitude_var = None
@@ -102,19 +119,42 @@ def result():
 
 	distance = format(R * c, '.2f')
 
+	#itung fare amount
+	farePerMile = float( R * c / 2.4)
+	print(farePerMile)
+	fare = format(2.5 + 0.4 * farePerMile, '.2f')
+	print(fare)
+
+	#hitung tax
+	tax = float((2.5 + 0.4 * farePerMile) * 0.1)
+	tax = format(tax, '.2f')
 	
+	totalAmt = float(float(fare) + float(extraFare) + float(tip) + float(tollAmt) + float(tax))
+	
+	prediksi = None
+	if totalAmt > 5:
+		prediksi = "Credit Card"
+	else:
+		prediksi = "Cash"
+
 	pickupLoc = {'pickupLoc' : pickupLoc}
 	dropoffLoc = {'dropoffLoc' : dropoffLoc}
 	passenger = {'passenger' : passenger}
 	tip = {'tip' : tip}
-	toll = {'toll' : toll}
+	tollAmt = {'tollAmt' : tollAmt}
 	timestamp = {'timestamp' : timestamp}
 	distance = {'distance' : distance}
+
+	fare = {'fare' : fare}
+	extraFare = {'extraFare' : extraFare}
+	tax = {'tax' : tax}
+	totalAmt = {'totalAmt' : totalAmt}
+	prediksi = {'prediksi' : prediksi}
 
 
 	# print("The dropoff location is " + dropoffLoc + ".")
 	return render_template('prediction-result.html', pickupLoc=pickupLoc, dropoffLoc=dropoffLoc, passenger=passenger,
-		 tip=tip, toll=toll, timestamp=timestamp, distance=distance)
+		 tip=tip, tollAmt=tollAmt, timestamp=timestamp, distance=distance, fare=fare, extraFare=extraFare, tax=tax, totalAmt=totalAmt, prediksi=prediksi)
 	
 @app.errorhandler(404)
 def not_found(e):	
