@@ -34,7 +34,12 @@ def index2():
 
 @app.route('/predict')
 def chart():
-	return render_template('charts.html')
+	#Array2an
+	places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little Spain"
+	, "Manhattan Valley", "Penn South", "Pomander Walk", "Riverside South", "Upper West Side", "Astor Row", "East Harlem"
+	,"Hamilton Heights", "Harlem", "Hudson Heights", "Inwood", "Le Petit Senegal", "Manhattanville", "Marble Hill", "Marble Hill",
+	"Marcus Garvey Park", "Morningside Heights", "Sugar Hill", "Sylvan", "Washington Heights", "Lenox Hill", "Turtle Bay"]
+	return render_template('charts.html', places=places)
 
 @app.route('/predict-result', methods = ['POST'])
 def result():
