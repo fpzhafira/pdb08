@@ -14,6 +14,12 @@ import socket
 
 from app import app
 
+#Array2an
+places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little Spain"
+	, "Manhattan Valley", "Penn South", "Pomander Walk", "Riverside South", "Upper West Side", "Astor Row", "East Harlem"
+	,"Hamilton Heights", "Harlem", "Hudson Heights", "Inwood", "Le Petit Senegal", "Manhattanville", "Marble Hill", 
+	"Marcus Garvey Park", "Morningside Heights", "Sugar Hill", "Sylvan", "Washington Heights", "Lenox Hill", "Turtle Bay"]
+
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
@@ -34,11 +40,7 @@ def index2():
 
 @app.route('/predict')
 def chart():
-	#Array2an
-	places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little Spain"
-	, "Manhattan Valley", "Penn South", "Pomander Walk", "Riverside South", "Upper West Side", "Astor Row", "East Harlem"
-	,"Hamilton Heights", "Harlem", "Hudson Heights", "Inwood", "Le Petit Senegal", "Manhattanville", "Marble Hill", "Marble Hill",
-	"Marcus Garvey Park", "Morningside Heights", "Sugar Hill", "Sylvan", "Washington Heights", "Lenox Hill", "Turtle Bay"]
+	
 	return render_template('charts.html', places=places)
 
 @app.route('/predict-result', methods = ['POST'])
@@ -49,6 +51,13 @@ def result():
 	tip = request.form['tip']
 	toll = request.form['toll']
 	timestamp = request.form['timestamp']
+
+	#hitung distance
+	longitude = None
+	for x in range(len(places)):
+		if places[x] == pickupLoc:
+			longitude = x
+			print longitude
 	
 	pickupLoc = {'pickupLoc' : pickupLoc}
 	dropoffLoc = {'dropoffLoc' : dropoffLoc}
