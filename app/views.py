@@ -23,6 +23,15 @@ def index():
 
 	return render_template('index.html')
 
+
+@app.route('/index-2')
+def index2():
+	# conf = SparkConf().setAppName("TaxiWeb")
+	# sc = SparkContext(conf=conf)
+	#model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
+
+	return render_template('index-2.html')
+
 @app.route('/predict')
 def chart():
 	return render_template('charts.html')
