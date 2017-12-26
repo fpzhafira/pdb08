@@ -59,11 +59,15 @@ def result():
 	timestamp = request.form['timestamp']
 
 	#hitung distance
-	longitude = None
+	longitude_var = None
 	for x in range(len(places)):
 		if places[x] == pickupLoc:
-			longitude = x
-			print longitude
+			longitude_var = longitude[x]
+	
+	latitude_var = None
+	for x in range(len(places)):
+		if places[x] == dropoffLoc:
+			latitude_var = latitude[x]
 
 	
 	pickupLoc = {'pickupLoc' : pickupLoc}
