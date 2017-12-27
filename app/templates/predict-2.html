@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">PDB08</a>
+        </li>
+        <li class="breadcrumb-item active">Predict</li>
+      </ol>
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Input form-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-bar-chart"></i> Payment Type Prediction </div>
+            <div class="card-body">
+              <form role="form" action="/predict-result" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="passenger_count">Passenger Count</label>
+                    <input type="text" name="passenger_count" class="form-control"  placeholder="Masukkan jumlah penumpang" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="trip_distance">Trip Distance</label>
+                    <input type="text" name="trip_distance" class="form-control"  placeholder="Masukkan jarak tempuh perjalanan" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+                  
+                <div class="form-group">
+                    <label for="pickup_longitude">Pickup Longitude</label>
+                    <input type="text" name="pickup_longitude" class="form-control"  placeholder="Masukkan longitude pickup" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="pickup_latitude">Pickup Latitude</label>
+                    <input type="text" name="pickup_latitude" class="form-control"  placeholder="Masukkan latitude pickup" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+                
+                <div class="form-group">
+                    <label for="dropoff_longitude">Dropoff Longitude</label>
+                    <input type="text" name="dropoff_longitude" class="form-control"  placeholder="Masukkan longitude dropoff" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="dropoff_latitude">Dropoff Latitude</label>
+                    <input type="text" name="dropoff_latitude" class="form-control"  placeholder="Masukkan latitude dropoff" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="fare_amount">Fare Amount</label>
+                    <input type="text" name="fare_amount" class="form-control"  placeholder="Masukkan jumlah fare" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="extra">Extra Fare</label>
+                    <input type="text" name="extra" class="form-control"  placeholder="Masukkan jumlah fare tambahan" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="mta_tax">Tax</label>
+                    <input type="text" name="mta_tax" class="form-control"  placeholder="Masukkan jumlah tax" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="tip_amount">Tip Amount</label>
+                    <input type="text" name="tip_amount" class="form-control"  placeholder="Masukkan jumlah tip yang ingin diberikan" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="tolls_amount">Tolls Amount</label>
+                    <input type="text" name="tolls_amount" class="form-control"  placeholder="Masukkan jumlah biaya tol" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="total_amount">Total Amount</label>
+                    <input type="text" name="total_amount" class="form-control"  placeholder="Masukkan total biaya" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="pickup_day">Pickup Day</label>
+                    <input type="text" name="pickup_day" class="form-control"  placeholder="Masukkan tanggal pickup" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="dropoff_day">Dropoff Day</label>
+                    <input type="text" name="dropoff_day" class="form-control"  placeholder="Masukkan tanggal dropoff" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="pickup_hour">Pickup Hour</label>
+                    <input type="text" name="pickup_hour" class="form-control"  placeholder="Masukkan jam pickup" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>  
+
+                <div class="form-group">
+                    <label for="dropoff_hour">Dropoff Hour</label>
+                    <input type="text" name="dropoff_hour" class="form-control"  placeholder="Masukkan jam dropoff" ></input>
+                    <p class="help-block text-danger"></p>
+                </div>
+                
+                <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+              </form>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
