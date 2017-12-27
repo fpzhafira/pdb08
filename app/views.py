@@ -160,7 +160,54 @@ def result():
 	# print("The dropoff location is " + dropoffLoc + ".")
 	return render_template('prediction-result.html', pickupLoc=pickupLoc, dropoffLoc=dropoffLoc, passenger=passenger,
 		 tip=tip, tollAmt=tollAmt, timestamp=timestamp, distance=distance, fare=fare, extraFare=extraFare, tax=tax, totalAmt=totalAmt, prediksi=prediksi)
-	
+
+@app.route('/predict2')
+def predict2():
+	return render_template('predict-2.html')
+
+@app.route('/predict2-result', methods = ['POST'])
+def predict2result():
+	passenger_count = request.form['passenger_count']
+	trip_distance = request.form['trip_distance']
+	pickup_longitude = request.form['pickup_longitude']
+	pickup_latitude = request.form['pickup_latitude']
+	dropoff_longitude = request.form['dropoff_longitude']
+	dropoff_latitude = request.form['dropoff_latitude']
+	fare_amount = request.form['fare_amount']
+	extra = request.form['extra']
+	mta_tax = request.form['mta_tax']
+	tip_amount = request.form['tip_amount']
+	tolls_amount = request.form['tolls_amount']
+	total_amount = request.form['total_amount']
+	pickup_day = request.form['pickup_day']
+	dropoff_day = request.form['dropoff_day']
+	pickup_hour = request.form['pickup_hour']
+	dropoff_hour = request.form['dropoff_hour']
+
+	passenger_count = {'passenger_count' : passenger_count}
+	trip_distance = {'trip_distance' : trip_distance}
+	pickup_longitude = {'pickup_longitude' : pickup_longitude}
+	pickup_latitude = {'pickup_latitude' : pickup_latitude}
+	dropoff_longitude = {'dropoff_longitude' : dropoff_longitude}
+	dropoff_latitude = {'dropoff_latitude' : dropoff_latitude}
+	fare_amount = {'fare_amount' : fare_amount}
+	extra = {'extra' : extra}
+	mta_tax = {'mta_tax' : mta_tax}
+	tip_amount = {'tip_amount' : tip_amount}
+	tolls_amount = {'tolls_amount' : tolls_amount}
+	total_amount = {'total_amount' : total_amount}
+	pickup_day = {'pickup_day' : pickup_day}
+	dropoff_day = {'dropoff_day' : dropoff_day}
+	pickup_hour = {'pickup_hour' : pickup_hour}
+	dropoff_hour = {'dropoff_hour' : dropoff_hour}
+	prediksi = {'prediksi' : "Cash"}
+
+
+	return render_template('prediction-2-result.html', passenger_count=passenger_count, trip_distance=trip_distance, pickup_longitude=pickup_longitude
+		, pickup_latitude=pickup_latitude, dropoff_longitude=dropoff_longitude, dropoff_latitude=dropoff_latitude, fare_amount=fare_amount, extra=extra
+		, mta_tax=mta_tax, tip_amount=tip_amount, tolls_amount=tolls_amount, total_amount=total_amount, pickup_day=pickup_day, dropoff_day=dropoff_day, pickup_hour=pickup_hour,
+		dropoff_hour=dropoff_hour, prediksi=prediksi)
+
 @app.errorhandler(404)
 def not_found(e):	
 	return Response('{"detail": "The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.", "status": "404", "title": "Not Found"}', status=404, mimetype='application/json')

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">PDB08</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="#">Predict</a>
+        </li>
+        <li class="breadcrumb-item active">Result</li>
+      </ol>
+      <div class="row">
+        <div class="col-lg-12">
+        	<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-bar-chart"></i> Payment Type Prediction Result </div>
+            <div class="card-body">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              	<h3>Trip Summary</h3>
+              <tbody>
+                <tr>
+                  <th>Passenger Count</th>
+                  <td>{{ passenger_count.passenger_count}}</td>
+                </tr>  
+                <tr>
+                  <th>Trip Distance</th>
+                  <td>{{ trip_distance.trip_distance}}</td>
+                </tr> 
+                <tr>
+                  <th>Pickup Longitude</th>
+                  <td>{{ pickup_longitude.pickup_longitude}}</td>
+                </tr> 
+                <tr>
+                  <th>Pickup Latitude</th>
+                  <td>{{ pickup_latitude.pickup_latitude}}</td>
+                </tr>  
+                <tr>
+                  <th>Dropoff Longitude</th>
+                  <td>{{ dropoff_longitude.dropoff_longitude}}</td>
+                </tr> 
+                <tr>
+                  <th>Dropoff Latitude</th>
+                  <td>{{ dropoff_latitude.dropoff_latitude}}</td>
+                </tr> 
+                <tr>
+                  <th>Fare Amount</th>
+                  <td>{{ fare_amount.fare_amount}}</td>
+                </tr>  
+                <tr>
+                  <th>Extra</th>
+                  <td>{{ extra.extra}}</td>
+                </tr> 
+                <tr>
+                  <th>Tax</th>
+                  <td>{{ mta_tax.mta_tax}}</td>
+                </tr> 
+                <tr>
+                  <th>Tip Amount</th>
+                  <td>{{ tip_amount.tip_amount}}</td>
+                </tr>  
+                <tr>
+                  <th>Tolls Amount</th>
+                  <td>{{ tolls_amount.tolls_amount}}</td>
+                </tr> 
+                <tr>
+                  <th>Total Amount</th>
+                  <td>{{ total_amount.total_amount}}</td>
+                </tr> 
+                <tr>
+                  <th>Pickup Day</th>
+                  <td>{{ pickup_day.pickup_day}}</td>
+                </tr> 
+                <tr>
+                  <th>Dropoff Day</th>
+                  <td>{{ dropoff_day.dropoff_day}}</td>
+                </tr>  
+                <tr>
+                  <th>Pickup Hour</th>
+                  <td>{{ pickup_hour.pickup_hour}}</td>
+                </tr> 
+                <tr>
+                  <th>Dropoff Hour</th>
+                  <td>{{ dropoff_hour.dropoff_hour}}</td>
+                </tr> 
+                <tr>
+                  <th>Suggested Payment Type</th>
+                  <td>{{ prediksi.prediksi}}</td>
+                </tr> 
+              </tbody>
+            </table>
+                        </div>
+
+          </div>
+        </div>
+      </div>
+{% endblock %}
