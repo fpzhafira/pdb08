@@ -14,6 +14,9 @@ import socket
 
 from app import app
 # from app import spark_init
+conf = SparkConf().setAppName("TaxiWeb")
+sc = SparkContext(conf=conf)
+model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
 
 #Array2an
 places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little Spain"
@@ -124,9 +127,6 @@ def result():
 	totalAmt = float(float(fare) + float(extraFare) + float(tip) + float(tollAmt) + float(tax))
 
 	# Predict result
-	conf = SparkConf().setAppName("TaxiWeb")
-	sc = SparkContext(conf=conf)
-	model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
 	rdd = sc.parallelize([[passenger, distance, lat1, lon1, lat2, lon2, fare, extraFare, tax, tollAmt, totalAmt, 1, 1, 1, 1]])
 	predictions = model.predict(rdd.map(lambda x: x))
 
@@ -161,4 +161,4 @@ def not_found(e):
 	return Response('{"detail": "The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.", "status": "404", "title": "Not Found"}', status=404, mimetype='application/json')
 	
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", port=8080, debug=True)
+	app.run(host="0.0.0.0", port=8080, debug=False)
