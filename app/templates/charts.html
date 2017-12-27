@@ -18,21 +18,28 @@
                   
                 <div class="form-group">
                     <label for="pickup">Pickup Location</label>
-                    <select name="pickup" class="form-control">
+                    <!-- <select name="pickup" class="form-control">
                       <option value="">Select pickup location</option>
                       <option value="Harlem">Harlem</option>
                       <option value="Hudson Yards">Hudson Yards</option>
                       <option value="Riverside South">Riverside South</option>
+                    </select> -->
+                    <select name="pickup" class="form-control">
+                      <option value="">Select pickup location</option>
+                    {% for place in places %}
+                      <option value="{{place}}">{{place}}</option>"
+                    {% endfor %}
                     </select>
+
                 </div>  
                 
                 <div class="form-group">
                     <label for="dropoff">Dropoff Location</label>
                     <select name="dropoff" class="form-control">
                       <option value="">Select dropoff location</option>
-                      <option value="Harlem">Harlem</option>
-                      <option value="Hudson Yards">Hudson Yards</option>
-                      <option value="Riverside South">Riverside South</option>
+                    {% for place in places %}
+                      <option value="{{place}}">{{place}}</option>"
+                    {% endfor %}
                     </select>
                 </div>
 
@@ -57,13 +64,13 @@
                     <label for="toll">Toll</label>
                     <select name="toll" class="form-control">
                       <option value="">Does your route include toll</option>
-                      <option value="1">Yes</option>
-                      <option value="0">No</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="timestamp">Time</label>
+                    <label for="timestamp">Departure Time</label>
                     <input type="time" name="timestamp" class="form-control"  placeholder="Waktu perjalanan akan dilakukan" required="required" data-validation-required-message="Pick the time"></input>
                     <p class="help-block text-danger"></p>
                 </div>                

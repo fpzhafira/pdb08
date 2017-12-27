@@ -32,10 +32,10 @@
                 <tr>
                   <td>{{ pickupLoc.pickupLoc }} </td>
                   <td>{{ dropoffLoc.dropoffLoc }}</td>
-                  <td> belom diitung </td>
+                  <td>{{distance.distance}} </td>
                   <td>{{ passenger.passenger }}</td>
                   <td>{{ tip.tip }}</td>
-                  <td>{{ toll.toll }}</td>
+                  <td>{{ tollAmt.tollAmt }}</td>
                   <td>{{ timestamp.timestamp }}</td>
                 </tr>   
               </tbody>
@@ -55,11 +55,11 @@
               </thead>
               <tbody>
                 <tr>
-                  <td> Itung farenya </td>
-                  <td> Itung extranya </td>
-                  <td> Itung tax </td>
-                  <td> fare+extra+tax </td>
-                  <td> Hasil prediksinya </td>
+                  <td> {{ fare.fare }} </td>
+                  <td> {{ extraFare.extraFare }} </td>
+                  <td> {{ tax.tax }} </td>
+                  <td> {{ totalAmt.totalAmt }} </td>
+                  <td> {{ prediksi.prediksi }} </td>
                 </tr>   
               </tbody>
             </table>
