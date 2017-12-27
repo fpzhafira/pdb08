@@ -21,6 +21,7 @@
   <link href="static/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="static/css/sb-admin.css" rel="stylesheet">
+  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -170,6 +171,21 @@
     <!-- Custom scripts for this page-->
     <script src="static/js/sb-admin-datatables.min.js"></script>
     <script src="static/js/sb-admin-charts.min.js"></script>
+
+     <script type="text/javascript" src="static/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>  <script type="text/javascript" src="static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="static/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script> 
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    forceParse: 0,
+        showMeridian: 1
+    });
+</script>
   </div>
 </body>
 

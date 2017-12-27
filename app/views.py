@@ -64,7 +64,8 @@ def result():
 		tollAmt = float(0)
 
 	#hitung extra fare
-	(h, m) = timestamp.split(':')
+	(date, t) = timestamp.split('-')
+	(h, m) = t.split(':')
 	extraFare = 0
 	h = int(h)
 	if (6 <= h <= 8) or (16 <= h <= 18) or (0 <= h <= 4):

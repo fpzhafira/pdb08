@@ -70,10 +70,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="timestamp">Departure Time</label>
-                    <input type="time" name="timestamp" class="form-control"  placeholder="Waktu perjalanan akan dilakukan" required="required" data-validation-required-message="Pick the time"></input>
-                    <p class="help-block text-danger"></p>
-                </div>                
+                <label class="control-label">Departure Date and Time</label>
+                <div class="controls input-append date form_datetime" data-date="2017-12-27T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input name="timestamp" class="form-control col-md-12" size="16" type="text" value="" readonly>
+                    <span class="add-on"><i class="fa fa-calendar"></i></span>
+                </div>
+                   <input type="hidden" id="dtp_input1" value="" /><br/>
+                 </div>          
                 
                 <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-danger">Reset</button>
