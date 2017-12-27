@@ -7,6 +7,7 @@ from flask import Response
 from flask import render_template
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from math import sin, cos, sqrt, atan2, radians
+from datetime import datetime
 
 import requests
 import json
@@ -58,6 +59,9 @@ def result():
 	tip = float(request.form['tip'])
 	toll = request.form['toll']
 	timestamp = request.form['timestamp']
+
+	hari = datetime.strptime(timestamp, '%d %B %Y - %I:%M %p').weekday() + 1
+	jam = datetime.strptime(timestamp, '%d %B %Y - %I:%M %p').hour
 
 	#hitung toll amt
 	tollAmt = None
@@ -113,6 +117,7 @@ def result():
 	c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
 	distance = format(R * c, '.2f')
+	distance_miles = distance/1.6
 
 	#itung fare amount
 	farePerMile = float( R * c / 2.4)
@@ -127,7 +132,7 @@ def result():
 	totalAmt = float(float(fare) + float(extraFare) + float(tip) + float(tollAmt) + float(tax))
 
 	# Predict result
-	rdd = sc.parallelize([[passenger, distance, lat1, lon1, lat2, lon2, fare, extraFare, tax, tollAmt, totalAmt, 1, 1, 1, 1]])
+	rdd = sc.parallelize([[passenger, distance_miles, lat1, lon1, lat2, lon2, fare, extraFare, tax, tollAmt, totalAmt, hari, hari, jam, jam+1]])
 	predictions = model.predict(rdd.map(lambda x: x))
 
 	prediksi = None
@@ -155,11 +160,7 @@ def result():
 	# print("The dropoff location is " + dropoffLoc + ".")
 	return render_template('prediction-result.html', pickupLoc=pickupLoc, dropoffLoc=dropoffLoc, passenger=passenger,
 		 tip=tip, tollAmt=tollAmt, timestamp=timestamp, distance=distance, fare=fare, extraFare=extraFare, tax=tax, totalAmt=totalAmt, prediksi=prediksi)
-
-@app.route('/predict2')
-def predict2():
-	return render_template('predict-2.html')
-
+	
 @app.errorhandler(404)
 def not_found(e):	
 	return Response('{"detail": "The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.", "status": "404", "title": "Not Found"}', status=404, mimetype='application/json')
