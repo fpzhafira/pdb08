@@ -155,7 +155,11 @@ def result():
 	# print("The dropoff location is " + dropoffLoc + ".")
 	return render_template('prediction-result.html', pickupLoc=pickupLoc, dropoffLoc=dropoffLoc, passenger=passenger,
 		 tip=tip, tollAmt=tollAmt, timestamp=timestamp, distance=distance, fare=fare, extraFare=extraFare, tax=tax, totalAmt=totalAmt, prediksi=prediksi)
-	
+
+@app.route('/predict2')
+def predict2():
+	return render_template('predict-2.html')
+
 @app.errorhandler(404)
 def not_found(e):	
 	return Response('{"detail": "The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.", "status": "404", "title": "Not Found"}', status=404, mimetype='application/json')
