@@ -1,5 +1,6 @@
 from pyspark.mllib.tree import DecisionTree, DecisionTreeModel
 from pyspark import SparkConf, SparkContext
+
 from flask import request, redirect
 from flask import jsonify
 from flask import Response
@@ -7,13 +8,12 @@ from flask import render_template
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from math import sin, cos, sqrt, atan2, radians
 
-
-
 import requests
 import json
 import socket
 
 from app import app
+# from app import spark_init
 
 #Array2an
 places = ["Chelsea", "Hell's Kitchen", "Hudson Yards", "Lincoln Square", "Little Spain"
@@ -36,24 +36,15 @@ longitude = ["74.0013737", "73.9918181", "74.0031180", "73.9844722", "73.997955"
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	conf = SparkConf().setAppName("TaxiWeb")
-	# sc = SparkContext(conf=conf)
-	#model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
-
 	return render_template('index.html')
 
 
 @app.route('/index-2')
 def index2():
-	# conf = SparkConf().setAppName("TaxiWeb")
-	# sc = SparkContext(conf=conf)
-	#model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
-
 	return render_template('index-2.html')
 
 @app.route('/predict')
 def chart():
-
 	return render_template('charts.html', places=places)
 
 @app.route('/predict-result', methods = ['POST'])
@@ -130,12 +121,20 @@ def result():
 	tax = format(tax, '.2f')
 	
 	totalAmt = float(float(fare) + float(extraFare) + float(tip) + float(tollAmt) + float(tax))
-	
+
+	# Predict result
+	conf = SparkConf().setAppName("TaxiWeb")
+	sc = SparkContext(conf=conf)
+	model = DecisionTreeModel.load(sc, "TugasAkhir/Model/decision_tree/decision_tree_v5")
+	rdd = sc.parallelize([[passenger, distance, lat1, lon1, lat2, lon2, fare, extraFare, tax, tollAmt, totalAmt, 1, 1, 1, 1]])
+	predictions = model.predict(rdd.map(lambda x: x))
+
 	prediksi = None
-	if totalAmt > 5:
-		prediksi = "Credit Card"
-	else:
+
+	if predictions.collect()[0] == 0:
 		prediksi = "Cash"
+	else:
+		prediksi = "Credit Card"
 
 	pickupLoc = {'pickupLoc' : pickupLoc}
 	dropoffLoc = {'dropoffLoc' : dropoffLoc}
